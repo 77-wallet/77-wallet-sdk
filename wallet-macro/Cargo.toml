@@ -1,0 +1,21 @@
+[package]
+name = "wallet-macro"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "wallet_macro"
+path = "src/lib.rs"
+
+[dependencies]
+quote = { version = "1", default-features = false }
+syn = { version = "1", default-features = false }
+bae = { version = "0.1", default-features = false }
+proc-macro2 = { version = "1", default-features = false }
+sqlx = { version = "0.7", features = [
+    "json",
+    "runtime-tokio-rustls",
+    "sqlite",
+] }
+
+macros = { version = "0.1.0", path = "macros"}

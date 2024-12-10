@@ -1,0 +1,65 @@
+{
+  "chains": [
+    {
+      "name": "Tron",
+      "chain_code": "tron",
+      "main_symbol": "TRX",
+      "node_name": "TRON Official Node",
+      "rpc_url": "https://api.trongrid.io",
+      "http_url": "",
+      "protocols": [
+        "TRC20"
+      ],
+      "network": "mainnet",
+      "active": true
+    },
+    {
+      "name": "Ethereum",
+      "chain_code": "eth",
+      "main_symbol": "ETH",
+      "node_name": "Ethereum-Test",
+      "rpc_url": "https://eth-sepolia.g.alchemy.com/v2/qEXgxpQOj5nsCYP2QryFL4R_HdFYAc05",
+      "http_url": "",
+      "protocols": [
+        "ERC20"
+      ],
+      "network": "testnet",
+      "active": false
+    },
+    {
+      "name": "BNB Smart Chain",
+      "chain_code": "bnb",
+      "main_symbol": "BNB",
+      "node_name": "BNB-Test",
+      "rpc_url": "https://go.getblock.io/d51b9998c91b42c281a5da0eea5567a0",
+      "http_url": "",
+      "protocols": [
+        "BEP20"
+      ],
+      "network": "testnet",
+      "active": false
+    },
+    {
+      "name": "Solana",
+      "chain_code": "sol",
+      "main_symbol": "SOL",
+      "node_name": "Platform Node",
+      "rpc_url": "http://rpc.88ai.fun/sol",
+      "http_url": "",
+      "protocols": [],
+      "network": "mainnet",
+      "active": true
+    },
+    {
+      "name": "Solana",
+      "chain_code": "sol",
+      "main_symbol": "SOL",
+      "node_name": "Solana-Dev",
+      "rpc_url": "https://solana-devnet.g.alchemy.com/v2/qEXgxpQOj5nsCYP2QryFL4R_HdFYAc05",
+      "http_url": "",
+      "protocols": [],
+      "network": "testnet",
+      "active": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+/target**
+Cargo.lock
+.DS_Store
+test_data
+*.db
+*.db-shm
+*.db-wal
+.vscode/
+rustc-ice*
+wallet-api/wallet_data/
+wallet-api/test_data_back/
+data_**

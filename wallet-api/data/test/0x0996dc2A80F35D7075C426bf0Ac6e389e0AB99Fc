@@ -1,0 +1,82 @@
+[
+  {
+    "chain_code": "tron",
+    "derivation_path": "m/44'/195'/0'/0/0",
+    "address_type": null
+  },
+  {
+    "chain_code": "eth",
+    "derivation_path": "m/44'/60'/0'/0/0",
+    "address_type": null
+  },
+  {
+    "chain_code": "bnb",
+    "derivation_path": "m/44'/60'/0'/0/0",
+    "address_type": null
+  },
+  {
+    "chain_code": "sol",
+    "derivation_path": "m/44'/501'/0'/0",
+    "address_type": null
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/84'/0'/0'/0/0",
+    "address_type": "P2wpkh"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/49'/0'/0'/0/0",
+    "address_type": "p2sh-wpkh"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/86'/0'/0'/0/0",
+    "address_type": "P2tr"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/44'/0'/0'/0/0",
+    "address_type": "P2pkh"
+  },
+  {
+    "chain_code": "tron",
+    "derivation_path": "m/44'/195'/0'/0/1",
+    "address_type": null
+  },
+  {
+    "chain_code": "eth",
+    "derivation_path": "m/44'/60'/0'/0/1",
+    "address_type": null
+  },
+  {
+    "chain_code": "bnb",
+    "derivation_path": "m/44'/60'/0'/0/1",
+    "address_type": null
+  },
+  {
+    "chain_code": "sol",
+    "derivation_path": "m/44'/501'/2'/0",
+    "address_type": null
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/84'/0'/0'/0/2",
+    "address_type": "P2wpkh"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/49'/0'/0'/0/2",
+    "address_type": "p2sh-wpkh"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/86'/0'/0'/0/2",
+    "address_type": "P2tr"
+  },
+  {
+    "chain_code": "btc",
+    "derivation_path": "m/44'/0'/0'/0/2",
+    "address_type": "P2pkh"
+  }
+]

@@ -1,0 +1,86 @@
+[package]
+name = "wallet-api"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+result = []
+response = []
+eth = []
+transaction = []
+test_net = []
+token = []
+loop = []
+
+[dependencies]
+
+wallet-database = { workspace = true }
+wallet-utils = { workspace = true }
+wallet-keystore = { workspace = true }
+wallet-tree = { workspace = true }
+wallet-oss = { workspace = true }
+# wallet-error = { workspace = true }
+wallet-core = { workspace = true }
+wallet-transport = { workspace = true }
+wallet-transport-backend = { workspace = true }
+wallet-chain-interact = { workspace = true }
+wallet-chain-instance = { workspace = true }
+wallet-types = { workspace = true }
+
+anyhow = { workspace = true }
+alloy = { workspace = true }
+# solana-sdk = { workspace = true }
+
+rand = { workspace = true }
+
+thiserror.workspace = true
+secp256k1 = { version = "0.28", features = ["rand"] }
+
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+
+sqlx = { workspace = true }
+
+serde.workspace = true
+serde_json.workspace = true
+serde_yaml = { workspace = true }
+
+once_cell = { workspace = true }
+
+rumqttc = { workspace = true }
+
+ctr.workspace = true
+aes.workspace = true
+digest.workspace = true
+hex.workspace = true
+hmac.workspace = true
+pbkdf2.workspace = true
+scrypt.workspace = true
+sha2.workspace = true
+sha3.workspace = true
+uuid.workspace = true
+
+
+futures = "0.3"
+regex = "1.10.4"
+crossbeam = "0.8.4"
+
+# log
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+# rust_decimal = { version = "1.35.0", features = ["maths"] }
+
+
+# sysinfo = "0.30.12"
+tempfile = "3.10.1"
+
+async-trait = { workspace = true }
+
+# ping
+# surge-ping = { workspace = true }
+
+reqwest = { workspace = true }
+
+urlencoding = { workspace = true }

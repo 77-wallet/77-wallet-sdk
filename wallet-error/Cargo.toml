@@ -1,0 +1,17 @@
+[package]
+name = "wallet-error"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = { workspace = true }
+alloy = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+rust_decimal = { workspace = true }
+# hex
+hex.workspace = true
+http.workspace = true
+
+reqwest = { workspace = true }

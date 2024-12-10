@@ -1,0 +1,38 @@
+[package]
+name = "wallet-database"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust_decimal = { version = "1.35.0", features = ["maths"] }
+wallet-utils = { workspace = true }
+wallet-keystore = { workspace = true }
+# wallet-entity = { workspace = true }
+wallet-types = { workspace = true }
+wallet-macro = { workspace = true }
+chrono = { version = "0.4", features = ["serde"] }
+
+# tokio
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+# error
+thiserror = { workspace = true }
+
+# sqlx
+sqlx = { workspace = true }
+
+# serde
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_repr = { workspace = true }
+
+async-trait = { workspace = true }
+
+# resource = { workspace = true }
+
+# log
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+once_cell = { version = "1", default-features = false }
+
+alloy = { workspace = true }

@@ -1,0 +1,69 @@
+{
+    "example_env": {
+        "create_wallet_req": [
+            {
+                "language_code": 1,
+                "phrase": "shaft love depth mercy defy cargo strong control eye machine night test",
+                "salt": "",
+                "wallet_name": "example_wallet",
+                "password": "example_password"
+            }
+        ],
+        "create_account_req": [
+            {
+                "account_name": "example_account",
+                "derivation_path": "m/44'/60'/0'/0/1",
+                "wallet_name": "example_wallet",
+                "root_password": "example_password",
+                "derive_password": "example_password"
+            },
+            {
+                "account_name": "example_account2",
+                "derivation_path": "m/44'/60'/0'/0/2",
+                "wallet_name": "example_wallet",
+                "root_password": "example_password",
+                "derive_password": "example_password"
+            }
+        ],
+        "add_chain_req": [
+            {
+                "name": "ETH",
+                "address": "0xA933b676bE829a8203d8AA7501BD2A3671C77587",
+                "chain_code": "1",
+                "status": 1
+            },
+            {
+                "name": "ETH",
+                "address": "0x18DB8aE9e753b38c4C7aD436D44280b9e7D397D6",
+                "chain_code": "2",
+                "status": 1
+            }
+        ],
+        "add_coin_req": [
+            {
+                "name": "ETH",
+                "coin_code": "USDT",
+                "address": "0xA933b676bE829a8203d8AA7501BD2A3671C77587",
+                "chain_code": "1",
+                "token_address": "0xasda1231231232143453453452344213423423sd",
+                "status": 1
+            },
+            {
+                "name": "ETH",
+                "coin_code": "BTC",
+                "address": "0xA933b676bE829a8203d8AA7501BD2A3671C77587",
+                "chain_code": "2",
+                "token_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                "status": 1
+            },
+            {
+                "name": "ETH",
+                "coin_code": "USDT",
+                "address": "0xA933b676bE829a8203d8AA7501BD2A3671C77587",
+                "chain_code": "2",
+                "token_address": "0x1233434534645564563636356546356246452522",
+                "status": 1
+            }
+        ]
+    }
+}

@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Tron-Test",
+    "symbol": "TRX",
+    "chain_code": "tron",
+    "decimals": 6,
+    "token_address": "",
+    "protocol": "TRC20",
+    "default": true
+  },
+  {
+    "name": "Tether USD",
+    "symbol": "USDT",
+    "chain_code": "tron",
+    "decimals": 6,
+    "token_address": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+    "protocol": "TRC20",
+    "default": true
+  },
+  {
+    "name": "WINkLink",
+    "symbol": "WIN",
+    "chain_code": "tron",
+    "decimals": 6,
+    "token_address": "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7",
+    "protocol": "TRC20",
+    "default": true
+  },
+  {
+    "name": "SUN",
+    "symbol": "SUN",
+    "chain_code": "tron",
+    "decimals": 18,
+    "token_address": "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S",
+    "protocol": "TRC20",
+    "default": true
+  },
+  {
+    "name": "BNB-Test",
+    "symbol": "BNB",
+    "chain_code": "bnb",
+    "decimals": 18,
+    "token_address": "",
+    "protocol": "BEP20",
+    "default": true
+  },
+  {
+    "name": "SOl-Test",
+    "symbol": "SOL",
+    "chain_code": "sol",
+    "decimals": 9,
+    "token_address": "",
+    "protocol": "",
+    "default": true
+  },
+  {
+    "name": "Tether USD",
+    "symbol": "USDT",
+    "chain_code": "sol",
+    "decimals": 6,
+    "token_address": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+    "protocol": "SRC20",
+    "default": true
+  },
+  {
+    "name": "BTC-Test",
+    "symbol": "BTC",
+    "chain_code": "btc",
+    "decimals": 8,
+    "token_address": "",
+    "protocol": "",
+    "default": true
+  },
+  {
+    "name": "ETH",
+    "symbol": "ETH",
+    "chain_code": "eth",
+    "decimals": 18,
+    "token_address": "",
+    "protocol": "ERC20",
+    "default": true
+  },
+  {
+    "name": "Chainlink",
+    "symbol": "LINK",
+    "chain_code": "eth",
+    "decimals": 18,
+    "token_address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+    "protocol": "ERC20",
+    "default": true
+  },
+  {
+    "name": "Tether USD",
+    "symbol": "USDT",
+    "chain_code": "eth",
+    "decimals": 6,
+    "token_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "protocol": "ERC20",
+    "default": true
+  },
+  {
+    "name": "USDC",
+    "symbol": "USDC",
+    "chain_code": "eth",
+    "decimals": 6,
+    "token_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "protocol": "ERC20",
+    "default": true
+  },
+  {
+    "name": "PancakeSwap Token",
+    "symbol": "CAKE",
+    "chain_code": "eth",
+    "decimals": 18,
+    "token_address": "0x152649ea73beab28c5b49b26eb48f7ead6d4c898",
+    "protocol": "ERC20",
+    "default": true
+  }
+]
