@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS api_withdraw_strategy (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid VARCHAR(64) NOT NULL UNIQUE,
+    threshold INTEGER NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP
+);

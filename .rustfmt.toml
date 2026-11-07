@@ -1,0 +1,8 @@
+max_width = 100          # 每行最大宽度
+tab_spaces = 4           # tab 等价空格数
+hard_tabs = false        # 是否使用硬 tab
+use_small_heuristics = "Max"  # 控制 rustfmt 自动折行的激进程度
+reorder_imports = true   # 自动排序 use
+reorder_modules = true   # 自动排序 mod
+edition = "2024"         # 使用 Rust 2021 edition 规则
+imports_granularity = "Crate"

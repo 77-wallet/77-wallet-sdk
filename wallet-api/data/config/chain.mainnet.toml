@@ -1,0 +1,62 @@
+[chains.tron]
+name = "TRON"
+chain_code = "tron"
+main_symbol = "TRX"
+protocols = ["TRC20"]
+active = true
+
+[chains.eth]
+name = "Ethereum"
+chain_code = "eth"
+main_symbol = "ETH"
+protocols = ["ERC20"]
+active = true
+
+[chains.bnb]
+name = "BNB Chain"
+chain_code = "bnb"
+main_symbol = "BNB"
+protocols = ["BEP20"]
+active = true
+
+[chains.sol]
+name = "Solana"
+chain_code = "sol"
+main_symbol = "SOL"
+protocols = []
+active = true
+
+[chains.btc]
+name = "Bitcoin"
+chain_code = "btc"
+main_symbol = "BTC"
+protocols = []
+active = true
+
+[chains.ltc]
+name = "Litecoin"
+chain_code = "ltc"
+main_symbol = "LTC"
+protocols = []
+active = true
+
+[chains.doge]
+name = "Dogecoin"
+chain_code = "doge"
+main_symbol = "DOGE"
+protocols = []
+active = true
+
+[chains.ton]
+name = "TON"
+chain_code = "ton"
+main_symbol = "GRAM"
+protocols = []
+active = true
+
+[chains.sui]
+name = "Sui"
+chain_code = "sui"
+main_symbol = "SUI"
+protocols = []
+active = true

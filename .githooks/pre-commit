@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# To enable: save as `.git/hooks/pre-commit` and run `chmod +x .git/hooks/pre-commit`
+# Purpose: Block commit if Rust code is not properly formatted
+
+echo "🦀 Running cargo fmt check..."
+
+make fmt
+if [ $? -ne 0 ]; then
+    echo "❌ Code not formatted properly."
+    echo "👉 Please run: cargo fmt"
+    exit 1
+fi
+
+echo "✅ Format check passed!"
+exit 0

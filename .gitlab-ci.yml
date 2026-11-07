@@ -1,0 +1,287 @@
+# ai review程序，勿动
+stages:
+  - review
+
+# =========================================================
+# 同步代码到服务器 /home/ubuntu/ocr
+# =========================================================
+sync_server_code:
+  stage: review
+
+  tags:
+    - ai-review
+
+  # 同一个项目不能同时修改服务器上的同一个仓库
+  resource_group: "sync-$CI_PROJECT_ID"
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH'
+      when: always
+
+  script:
+    - |
+      set -euo pipefail
+      umask 0002
+
+      : "${CI_PROJECT_PATH:?CI_PROJECT_PATH is required}"
+      : "${CI_COMMIT_REF_NAME:?CI_COMMIT_REF_NAME is required}"
+      : "${CI_COMMIT_SHA:?CI_COMMIT_SHA is required}"
+
+      BASE_DIR="/home/ubuntu/ocr"
+      REPO_DIR="$BASE_DIR/$CI_PROJECT_PATH"
+
+      GIT_URL="http://git.ai.com/$CI_PROJECT_PATH.git"
+
+      CRED_FILE="/home/gitlab-runner/.git-credentials-ocr"
+
+      echo "========================================"
+      echo "Project       : $CI_PROJECT_PATH"
+      echo "Branch        : $CI_COMMIT_REF_NAME"
+      echo "Pipeline SHA  : $CI_COMMIT_SHA"
+      echo "Repository    : $REPO_DIR"
+      echo "========================================"
+
+      # ---------------------------------------------------
+      # 自动创建父目录
+      # 例如：
+      # global-pay/mobile/project-a
+      # 会自动创建：
+      # /home/ubuntu/ocr/global-pay/mobile
+      # ---------------------------------------------------
+
+      mkdir -p "$(dirname "$REPO_DIR")"
+
+      # ---------------------------------------------------
+      # 仓库不存在时自动初始化
+      #
+      # 不直接使用 CI_REPOSITORY_URL，
+      # 避免 CI_JOB_TOKEN 写入长期仓库。
+      # ---------------------------------------------------
+
+      if [ ! -d "$REPO_DIR/.git" ]; then
+
+        echo "Repository does not exist."
+        echo "Initializing repository..."
+
+        mkdir -p "$REPO_DIR"
+
+        git -C "$REPO_DIR" init
+
+        git -C "$REPO_DIR" remote add origin "$GIT_URL"
+
+        echo "Repository initialized."
+
+      fi
+
+      cd "$REPO_DIR"
+
+      # ---------------------------------------------------
+      # 固定 origin
+      # 防止 CI_JOB_TOKEN 污染 remote URL
+      # ---------------------------------------------------
+
+      git remote set-url origin "$GIT_URL"
+
+      # ---------------------------------------------------
+      # 使用 OCR 专用 PAT
+      # ---------------------------------------------------
+
+      git config credential.helper \
+        "store --file=$CRED_FILE"
+
+      # ---------------------------------------------------
+      # 确保 origin 支持所有远程分支
+      # 修复以前 --single-branch clone 的仓库
+      # ---------------------------------------------------
+
+      git config --unset-all remote.origin.fetch || true
+
+      git config --add remote.origin.fetch \
+        '+refs/heads/*:refs/remotes/origin/*'
+
+      # ---------------------------------------------------
+      # Fetch 当前分支
+      #
+      # credential.helper= 先清除继承的 helper，
+      # 防止 GitLab CI_JOB_TOKEN 抢占 PAT。
+      # ---------------------------------------------------
+
+      echo "Fetching origin/$CI_COMMIT_REF_NAME..."
+
+      git \
+        -c credential.helper= \
+        -c "credential.helper=store --file=$CRED_FILE" \
+        fetch origin \
+        "+refs/heads/$CI_COMMIT_REF_NAME:refs/remotes/origin/$CI_COMMIT_REF_NAME"
+
+      # ---------------------------------------------------
+      # 确认远程分支存在
+      # ---------------------------------------------------
+
+      if ! git show-ref --verify --quiet \
+        "refs/remotes/origin/$CI_COMMIT_REF_NAME"; then
+
+        echo "ERROR: Remote branch does not exist:"
+        echo "origin/$CI_COMMIT_REF_NAME"
+        exit 1
+
+      fi
+
+      # ---------------------------------------------------
+      # 丢弃服务器工作区的本地 tracked 修改
+      #
+      # /home/ubuntu/ocr 是自动同步目录，
+      # 不应该在这里保存手工修改。
+      # ---------------------------------------------------
+
+      echo "Discarding local tracked changes..."
+
+      git reset --hard
+
+      # ---------------------------------------------------
+      # 切换分支
+      # ---------------------------------------------------
+
+      echo "Switching to branch: $CI_COMMIT_REF_NAME"
+
+      if git show-ref --verify --quiet \
+        "refs/heads/$CI_COMMIT_REF_NAME"; then
+
+        git switch "$CI_COMMIT_REF_NAME"
+
+      else
+
+        git switch -c "$CI_COMMIT_REF_NAME" \
+          "origin/$CI_COMMIT_REF_NAME"
+
+        git branch \
+          --set-upstream-to="origin/$CI_COMMIT_REF_NAME" \
+          "$CI_COMMIT_REF_NAME"
+
+      fi
+
+      # ---------------------------------------------------
+      # 同步到当前 Pipeline 对应的精确 Commit
+      #
+      # 不直接 reset 到 origin/main/origin/prod，
+      # 避免 Pipeline 排队期间分支继续产生新 Commit。
+      # ---------------------------------------------------
+
+      if ! git cat-file -e "${CI_COMMIT_SHA}^{commit}" 2>/dev/null; then
+
+        echo "Pipeline commit not available locally."
+        echo "Fetching exact commit..."
+
+        git \
+          -c credential.helper= \
+          -c "credential.helper=store --file=$CRED_FILE" \
+          fetch origin "$CI_COMMIT_SHA"
+
+      fi
+
+      echo "Resetting to pipeline commit:"
+      echo "$CI_COMMIT_SHA"
+
+      git reset --hard "$CI_COMMIT_SHA"
+
+      # ---------------------------------------------------
+      # 设置 upstream
+      # ---------------------------------------------------
+
+      git branch \
+        --set-upstream-to="origin/$CI_COMMIT_REF_NAME" \
+        "$CI_COMMIT_REF_NAME" \
+        >/dev/null 2>&1 || true
+
+      # ---------------------------------------------------
+      # 权限
+      # ---------------------------------------------------
+
+      git config core.sharedRepository group
+
+      chgrp -R ocrsync "$REPO_DIR"
+      chmod -R g+rwX "$REPO_DIR"
+
+      find "$REPO_DIR" \
+        -type d \
+        -exec chmod g+s {} \;
+
+      # ---------------------------------------------------
+      # 最终验证
+      # ---------------------------------------------------
+
+      LOCAL_SHA="$(git rev-parse HEAD)"
+
+      echo
+      echo "========================================"
+      echo "Sync result"
+      echo "========================================"
+      echo "Current branch : $(git branch --show-current)"
+      echo "Local commit   : $LOCAL_SHA"
+      echo "Pipeline commit: $CI_COMMIT_SHA"
+
+      if [ "$LOCAL_SHA" != "$CI_COMMIT_SHA" ]; then
+
+        echo "ERROR: Local commit does not match Pipeline commit."
+        exit 1
+
+      fi
+
+      echo
+      echo "Sync completed successfully:"
+      echo "$REPO_DIR"
+
+
+# =========================================================
+# AI Review
+#
+# 注意：
+# 不执行项目仓库中的 .ai-review.py
+#
+# 固定执行服务器上的受信任脚本：
+# /home/ubuntu/gitlab-review-scripts/.ai-review.py
+#
+# 当前工作目录仍然是 GitLab Runner 的 $CI_PROJECT_DIR，
+# 因此审查的是当前 Pipeline checkout 的代码。
+# =========================================================
+ai_code_review:
+  stage: review
+
+  tags:
+    - ai-review
+
+  rules:
+    - when: always
+
+  script:
+    - |
+      set -euo pipefail
+
+      REVIEW_SCRIPT="/home/ubuntu/gitlab-review-scripts/.ai-review.py"
+
+      if [ ! -f "$REVIEW_SCRIPT" ]; then
+        echo "ERROR: AI Review script not found:"
+        echo "$REVIEW_SCRIPT"
+        exit 1
+      fi
+
+      if [ ! -r "$REVIEW_SCRIPT" ]; then
+        echo "ERROR: AI Review script is not readable:"
+        echo "$REVIEW_SCRIPT"
+        exit 1
+      fi
+
+      echo "========================================"
+      echo "AI Code Review"
+      echo "========================================"
+      echo "Project      : $CI_PROJECT_PATH"
+      echo "Branch       : ${CI_COMMIT_REF_NAME:-N/A}"
+      echo "Commit       : $CI_COMMIT_SHA"
+      echo "Working dir  : $CI_PROJECT_DIR"
+      echo "Review script: $REVIEW_SCRIPT"
+      echo "========================================"
+
+      cd "$CI_PROJECT_DIR"
+
+      python3 "$REVIEW_SCRIPT"
+

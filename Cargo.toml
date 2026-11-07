@@ -1,0 +1,197 @@
+[workspace]
+members = [
+    "wallet-api",
+    "wallet-database",
+    "wallet-transport-backend",
+    # "wallet-error",
+    # "wallet-macro",
+    "wallet-oss",
+    "wallet-tree",
+]
+
+resolver = "2"
+
+
+[workspace.dependencies]
+wallet-api = { version = "0.1.0", default-features = false, path = "wallet-api" }
+wallet-oss = { version = "0.1.0", default-features = false, path = "wallet-oss" }
+wallet-database = { version = "0.1.0", default-features = false, path = "wallet-database" }
+wallet-transport-backend = { version = "0.1.0", default-features = false, path = "wallet-transport-backend" }
+# wallet-macro = { version = "0.1.0", default-features = false, path = "wallet-macro" }
+wallet-tree = { version = "0.1.0", default-features = false, path = "wallet-tree" }
+wallet-ecdh = { version = "0.1.0", default-features = false, path = "wallet-ecdh" }
+
+wallet-crypto = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-chain-interact = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-chain-instance = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-transport = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-utils = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-types = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+wallet-core = { default-features = false, git = "http://git.ai.com/wallet/client/wallet_core.git", rev = "5486d9268b9c6fd04e5c54e25d4816ae84618fe5" }
+
+#  wallet-crypto = { default-features = false, path = "../wallet_core/wallet-crypto" }
+#  wallet-chain-interact = { default-features = false, path = "../wallet_core/wallet-chain-interact" }
+#  wallet-chain-instance = { default-features = false, path = "../wallet_core/wallet-chain-instance" }
+#  wallet-transport = { default-features = false, path = "../wallet_core/wallet-transport" }
+#  wallet-utils = { default-features = false, path = "../wallet_core/wallet-utils" }
+#  wallet-types = { default-features = false, path = "../wallet_core/wallet-types" }
+#  wallet-core = { default-features = false, path = "../wallet_core/wallet-core" }
+
+# wallet-crypto = { default-features = false, path = "../77_wallet_core/wallet-crypto" }
+# wallet-chain-interact = { default-features = false, path = "../77_wallet_core/wallet-chain-interact" }
+# wallet-chain-instance = { default-features = false, path = "../77_wallet_core/wallet-chain-instance" }
+# wallet-transport = { default-features = false, path = "../77_wallet_core/wallet-transport" }
+# wallet-utils = { default-features = false, path = "../77_wallet_core/wallet-utils" }
+# wallet-types = { default-features = false, path = "../77_wallet_core/wallet-types" }
+# wallet-core = { default-features = false, path = "../77_wallet_core/wallet-core" }
+
+
+# http
+reqwest = { version = "0.12.4", default-features = false, features = [
+    "rustls-tls",
+    "charset",
+    "http2",
+    "macos-system-configuration",
+    "json",
+] }
+http = "1.1.0"
+futures = "0.3.31"
+
+# time
+chrono = { version = "0.4", features = ["serde"] }
+
+#url
+urlencoding = "2.1.3"
+
+# ping
+# surge-ping = "0.8.1"
+
+# mqtt
+rumqttc = { version = "0.24.0", features = ["websocket", "url"] }
+
+# log
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing = "0.1.31"
+tracing-appender = "0.2.1"
+tracing-android = "0.2.0"
+
+# 
+ctr = "0.9.2"
+aes = "0.8"
+
+digest = "0.10.0"
+hex = "0.4"
+hmac = "0.12.0"
+pbkdf2 = { version = "0.11", default-features = false }
+scrypt = { version = "0.10.0", default-features = false }
+sha1 = "0.10.6"
+sha2 = "0.10.1"
+sha3 = "0.10.0"
+uuid = { version = "1.0", features = ["serde", "v4"] }
+base64 = "0.22.1"
+coins-bip32 = "0.8.7"
+secrecy = "0.10.3"
+
+# serde
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+serde_repr = "0.1"
+
+# error
+thiserror = "1"
+anyhow = "1"
+
+rust_decimal = { version = "1.37.1", features = ["maths"] }
+rand = "0.8.5"
+url = "2.5.0"
+fastrand = "2.1.0"
+
+# sqlx
+sqlx = { version = "0.8.6", features = [
+    "sqlite",
+    "runtime-tokio-rustls",
+    "chrono",
+] }
+
+
+# async
+async-trait = "0.1.80"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal"] }
+tokio-stream = { version = "0.1" }
+
+# # chain
+alloy = { git = "https://github.com/alloy-rs/alloy", default-features = false, features = [
+    # "consensus",
+    "sol-types",
+    # "providers",
+    # "contract",
+    "rpc-types",
+    # "serde",
+    # "provider-http",
+    # "provider-ws",
+    # "rpc-client",
+    # "rpc-types-eth",
+    # "node-bindings",
+    "network",
+    "signers",
+    "signer-keystore",
+    # "signer-mnemonic",
+], rev = "ea5eb7d504a1f4eb6c9937af7913577f78fee121" }
+
+once_cell = { version = "1", default-features = false }
+lazy_static = "1.4.0"
+
+cfg-if = "1.0.0"
+
+# map
+dashmap = { version = "6.1.0", features = ["serde"] }
+
+strum = "0.26"
+strum_macros = "0.26"
+
+rayon = "1.11.0"
+
+[patch.crates-io.curve25519-dalek]
+git = "https://github.com/solana-labs/curve25519-dalek.git"
+rev = "b500cdc2a920cd5bff9e2dd974d7b97349d61464"
+
+[patch.crates-io.protobuf]
+git = "https://github.com/stepancheg/rust-protobuf/"
+rev = "34680a41039a9e108d927b6d8d6647277589c912"
+
+[patch.crates-io.scrypt]
+git = "https://github.com/RustCrypto/password-hashes.git"
+rev = "7ddd03c31fdec4f9575438688e7f58f5c692419b"
+
+[profile.dev]
+codegen-units = 4
+debug = true
+debug-assertions = true
+incremental = true
+lto = false
+opt-level = 0
+overflow-checks = false
+panic = 'unwind'
+rpath = false
+
+[profile.release]
+codegen-units = 1
+debug = false
+debug-assertions = false
+incremental = false
+lto = "thin"
+opt-level = 3
+overflow-checks = false
+panic = 'unwind'
+rpath = false
+
+[profile.test]
+codegen-units = 16
+debug = true
+debug-assertions = true
+incremental = false
+lto = false
+opt-level = 0
+overflow-checks = true
+rpath = false

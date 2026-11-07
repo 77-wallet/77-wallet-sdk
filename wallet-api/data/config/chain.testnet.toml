@@ -1,0 +1,34 @@
+[chains.polygon]
+name = "Polygon"
+chain_code = "polygon"
+main_symbol = "POL"
+protocols = ["ERC20"]
+active = true
+
+[chains.avalanche]
+name = "Avalanche-C"
+chain_code = "avalanche"
+main_symbol = "AVAX"
+protocols = ["ERC20"]
+active = true
+
+[chains.arbitrum]
+name = "Arbitrum One"
+chain_code = "arbitrum"
+main_symbol = "ETH"
+protocols = ["ERC20"]
+active = true
+
+[chains.base]
+name = "Base"
+chain_code = "base"
+main_symbol = "ETH"
+protocols = ["ERC20"]
+active = true
+
+[chains.scroll]
+name = "Scroll"
+chain_code = "scroll"
+main_symbol = "ETH"
+protocols = ["ERC20"]
+active = true

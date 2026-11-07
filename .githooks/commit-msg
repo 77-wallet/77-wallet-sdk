@@ -1,0 +1,142 @@
+#!/bin/sh
+
+# Validate commit message with commitlint.
+ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+MSG_FILE="$1"
+HEADER="$(sed -n '1p' "$MSG_FILE" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+CC_PATTERN='^(feat|fix|refactor|test|docs|chore|perf)(\([a-z0-9-]+\))?: .+'
+
+if ! command -v commitlint >/dev/null 2>&1; then
+    echo "commitlint command not found."
+    echo "Please install @commitlint/cli and retry."
+    exit 1
+fi
+
+infer_scope_from_path() {
+    path="$1"
+    case "$path" in
+        wallet-api/*) echo "api-wallet" ;;
+        wallet-transport-backend/*) echo "wallet-transport-backend" ;;
+        wallet-database/*) echo "wallet-database" ;;
+        wallet-oss/*) echo "wallet-oss" ;;
+        wallet-tree/*) echo "wallet-tree" ;;
+        wallet-ecdh/*) echo "wallet-ecdh" ;;
+        docs/*|*.md) echo "docs" ;;
+        tests/*|*/tests/*) echo "tests" ;;
+        .githooks/*|.github/*) echo "repo" ;;
+        *)
+            printf '%s' "$path" | awk -F/ '{print $1}' \
+              | tr '[:upper:]' '[:lower:]' \
+              | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+            ;;
+    esac
+}
+
+first_word() {
+    printf '%s' "$1" | awk '{print tolower($1)}'
+}
+
+if ! printf '%s\n' "$HEADER" | grep -Eq "$CC_PATTERN"; then
+    STAGED_FILES="$(git -C "$ROOT_DIR" diff --cached --name-only --diff-filter=ACMR)"
+    header_lower="$(printf '%s' "$HEADER" | tr '[:upper:]' '[:lower:]')"
+
+    docs_only=1
+    has_docs=0
+    has_tests=0
+    has_code=0
+    has_infra=0
+    scope=""
+    scope_multi=0
+
+    for path in $STAGED_FILES; do
+        case "$path" in
+            docs/*|*.md) has_docs=1 ;;
+            *) docs_only=0 ;;
+        esac
+        case "$path" in
+            tests/*|*/tests/*|*test*.rs) has_tests=1 ;;
+        esac
+        case "$path" in
+            *.rs|*/src/*) has_code=1 ;;
+        esac
+        case "$path" in
+            AGENTS.md|Cargo.toml|Cargo.lock|Makefile|commitlint.config.cjs|.githooks/*|.github/*)
+                has_infra=1
+                ;;
+        esac
+
+        candidate="$(infer_scope_from_path "$path")"
+        [ -z "$candidate" ] && candidate="repo"
+        if [ -z "$scope" ]; then
+            scope="$candidate"
+        elif [ "$scope" != "$candidate" ]; then
+            scope_multi=1
+        fi
+    done
+
+    [ -z "$scope" ] && scope="repo"
+    [ "$scope_multi" -eq 1 ] && scope="repo"
+
+    if [ "$docs_only" -eq 1 ] && [ -n "$STAGED_FILES" ]; then
+        type="docs"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(fix|bug|hotfix|error|regression)\b'; then
+        type="fix"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(refactor|cleanup|clean up|restructure|rename)\b'; then
+        type="refactor"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(perf|performance|optimi[sz]e)\b'; then
+        type="perf"
+    elif [ "$has_tests" -eq 1 ] && [ "$has_code" -eq 0 ]; then
+        type="test"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(test|spec)\b'; then
+        type="test"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(doc|readme|changelog)\b'; then
+        type="docs"
+    elif [ "$has_infra" -eq 1 ] && [ "$has_code" -eq 0 ]; then
+        type="chore"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(chore|build|ci|deps|bump|config)\b'; then
+        type="chore"
+    elif printf '%s\n' "$header_lower" | grep -Eq '\b(add|implement|support|enable|create|introduce|new)\b'; then
+        type="feat"
+    elif [ "$has_code" -eq 1 ]; then
+        type="feat"
+    else
+        type="chore"
+    fi
+
+    summary="$(printf '%s' "$HEADER" \
+      | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//; s/[.]$//; s/[[:space:]]+/ /g')"
+    summary="$(printf '%s\n' "$summary" | awk '{
+      if (length($0) == 0) { print; next }
+      printf "%s%s\n", tolower(substr($0, 1, 1)), substr($0, 2)
+    }')"
+
+    summary_first_word="$(first_word "$summary")"
+    if ! printf '%s\n' "$summary_first_word" \
+      | grep -Eq '^(add|fix|refactor|remove|support|inject|prevent|enable|disable|implement|improve|rename|split|merge|simplify|optimize|configure|document|test|clean|align)$'; then
+        case "$type" in
+            fix) verb="fix" ;;
+            refactor) verb="refactor" ;;
+            perf) verb="optimize" ;;
+            docs) verb="document" ;;
+            test) verb="test" ;;
+            feat) verb="add" ;;
+            *) verb="add" ;;
+        esac
+        if [ -n "$summary" ]; then
+            summary="$verb $summary"
+        else
+            summary="$verb changes"
+        fi
+    fi
+
+    prefix="$type($scope): "
+    max_summary_len=$((72 - ${#prefix}))
+    if [ "$max_summary_len" -gt 0 ] && [ ${#summary} -gt "$max_summary_len" ]; then
+        summary="$(printf '%s' "$summary" | cut -c1-"$max_summary_len" | sed -E 's/[[:space:]]+$//')"
+    fi
+
+    printf '%s\n' "$type($scope): $summary" > "$MSG_FILE"
+    echo "normalized commit message: $(cat "$MSG_FILE")"
+fi
+
+exec commitlint --config "$ROOT_DIR/commitlint.config.cjs" --edit "$MSG_FILE"

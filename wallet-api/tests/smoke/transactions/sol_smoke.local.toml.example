@@ -1,0 +1,14 @@
+# Copy this file to `sol_smoke.local.toml` and fill in your own values.
+# The local file is ignored by git.
+
+rpc_url = "https://api.mainnet-beta.solana.com"
+from = "YOUR_FROM_ADDRESS"
+to = "YOUR_TO_ADDRESS"
+amount = "0.001"
+private_key = "YOUR_SOLANA_BASE58_PRIVATE_KEY"
+
+# For SPL token transfers, fill these in.
+# Leave `token_mint` empty or omit it for native SOL transfers.
+# token_mint = "TOKEN_MINT_ADDRESS"
+# token_decimals = 6
+# symbol = "USDC"

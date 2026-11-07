@@ -1,0 +1,12 @@
+# Deprecated:
+# This file is no longer used at runtime.
+#
+# Active config files:
+# - node.mainnet.toml
+# - node.testnet.toml
+#
+# Runtime selects by build feature:
+# - `prod` -> node.mainnet.toml
+# - `dev` / `test` -> node.testnet.toml
+#
+# Do not add mixed-network nodes here.

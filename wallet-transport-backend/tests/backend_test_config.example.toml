@@ -1,0 +1,5 @@
+base_url = "https://replace-with-your-test-backend"
+client_id = "replace-client-id"
+aw_sec_id = "replace-aw-sec-id"
+aes_key = "replace-16-bytes-key"
+aes_iv = "replace-16-bytes-iv"

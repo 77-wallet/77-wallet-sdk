@@ -1,0 +1,264 @@
+[[coins]]
+name = "Tron"
+chain_code = "tron"
+symbol = "TRX"
+decimals = 6
+token_address = ""
+protocol = "TRC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Tether USD"
+chain_code = "tron"
+symbol = "USDT"
+decimals = 6
+token_address = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+protocol = "TRC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "WINkLink"
+chain_code = "tron"
+symbol = "WIN"
+decimals = 6
+token_address = "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7"
+protocol = "TRC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "SUN"
+chain_code = "tron"
+symbol = "SUN"
+decimals = 18
+token_address = "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S"
+protocol = "TRC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "BNB"
+chain_code = "bnb"
+symbol = "BNB"
+decimals = 18
+token_address = ""
+protocol = "BEP20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "SOl"
+chain_code = "sol"
+symbol = "SOL"
+decimals = 9
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Tether USD"
+chain_code = "sol"
+symbol = "USDT"
+decimals = 6
+token_address = "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+protocol = "SRC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "BTC"
+chain_code = "btc"
+symbol = "BTC"
+decimals = 8
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "ETH"
+chain_code = "eth"
+symbol = "ETH"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Chainlink"
+chain_code = "eth"
+symbol = "LINK"
+decimals = 18
+token_address = "0x514910771AF9Ca656af840dff83E8264EcF986CA"
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Tether USD"
+chain_code = "eth"
+symbol = "USDT"
+decimals = 6
+token_address = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "USDC"
+chain_code = "eth"
+symbol = "USDC"
+decimals = 6
+token_address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "PancakeSwap Token"
+chain_code = "eth"
+symbol = "CAKE"
+decimals = 18
+token_address = "0x152649eA73beAb28c5b49B26eb48f7EAD6d4c898"
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "LTC"
+chain_code = "ltc"
+symbol = "LTC"
+decimals = 8
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Dogecoin"
+chain_code = "doge"
+symbol = "DOGE"
+decimals = 8
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "GRAM"
+chain_code = "ton"
+symbol = "GRAM"
+decimals = 9
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Ton"
+chain_code = "ton"
+symbol = "USDT"
+decimals = 6
+token_address = "EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs"
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "sui"
+chain_code = "sui"
+symbol = "SUI"
+decimals = 9
+token_address = ""
+protocol = ""
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Tether USD"
+chain_code = "sui"
+symbol = "USDT"
+decimals = 6
+token_address = "0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN"
+protocol = ""
+default = true
+popular = true
+active = true
+
+# API dev native defaults; ordinary loaders exclude this rollout scope.
+[[coins]]
+name = "Polygon"
+chain_code = "polygon"
+symbol = "POL"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Avalanche"
+chain_code = "avalanche"
+symbol = "AVAX"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Arbitrum"
+chain_code = "arbitrum"
+symbol = "ETH"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Base"
+chain_code = "base"
+symbol = "ETH"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true
+
+[[coins]]
+name = "Scroll"
+chain_code = "scroll"
+symbol = "ETH"
+decimals = 18
+token_address = ""
+protocol = "ERC20"
+default = true
+popular = true
+active = true

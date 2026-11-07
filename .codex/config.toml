@@ -1,0 +1,8 @@
+# 1) 限制项目文档注入大小（AGENTS.md 等）
+project_doc_max_bytes = 8192
+
+# 2) 限制工具输出进入上下文（测试/编译日志）
+tool_output_token_limit = 2000
+
+# 3) 推理强度降到 low
+model_reasoning_effort = "low"

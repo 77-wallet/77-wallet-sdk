@@ -1,0 +1,71 @@
+[nodes]
+[nodes.tron]
+[[nodes.tron.nodes]]
+node_name = "Nileex"
+rpc_url = "https://nile.trongrid.io"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.bnb.nodes]]
+node_name = "77 Official Test Nodes"
+rpc_url = "https://bsc-testnet.therpc.io"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.sol.nodes]]
+node_name = "Solana Official Dev Node"
+rpc_url = "https://api.devnet.solana.com"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.ton.nodes]]
+node_name = "77 Official Test Nodes"
+rpc_url = "https://testnet.toncenter.com/api/v2"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.sui.nodes]]
+node_name = "Sui Official Test Node"
+rpc_url = "https://sui-testnet-endpoint.blockvision.org"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.polygon.nodes]]
+node_name = "Polygon Amoy"
+rpc_url = "https://polygon-amoy.drpc.org"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.avalanche.nodes]]
+node_name = "Avalanche Fuji"
+rpc_url = "https://api.avax-test.network/ext/bc/C/rpc"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.arbitrum.nodes]]
+node_name = "Arbitrum Sepolia"
+rpc_url = "https://sepolia-rollup.arbitrum.io/rpc"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.base.nodes]]
+node_name = "Base Sepolia"
+rpc_url = "https://sepolia.base.org"
+http_url = ""
+network = "testnet"
+active = true
+
+[[nodes.scroll.nodes]]
+node_name = "Scroll Sepolia"
+rpc_url = "https://scroll-sepolia-rpc.publicnode.com"
+http_url = ""
+network = "testnet"
+active = true

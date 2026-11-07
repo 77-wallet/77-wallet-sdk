@@ -1,0 +1,59 @@
+[package]
+name = "wallet-transport-backend"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+# default = ["test"]
+default = ["dev", "online-tests"]
+# default = ["prod"]
+test = []
+dev = []
+prod = []
+online-tests = []
+accept_invalid_certs = ["wallet-transport/accept_invalid_certs"]
+
+[dependencies]
+wallet-utils = { workspace = true }
+wallet-transport = { workspace = true }
+wallet-types = { workspace = true }
+wallet-ecdh = { workspace = true }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_repr = { workspace = true }
+
+rust_decimal = { workspace = true }
+
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+# error
+thiserror.workspace = true
+
+# http
+reqwest = { workspace = true, features = ["multipart"] }
+http.workspace = true
+# log
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+urlencoding = { workspace = true }
+cfg-if = { workspace = true }
+hex = "0.4"
+uuid = { version = "1.18.1", features = ["v4"] }
+
+chrono = { workspace = true }
+once_cell = { workspace = true }
+dashmap = { workspace = true }
+futures = { workspace = true }
+
+# url parsing
+url = { workspace = true }
+
+# random jitter
+fastrand = { workspace = true }
+
+[dev-dependencies]
+http-body-util = "0.1"
+serial_test = "3"
+toml = "0.8"

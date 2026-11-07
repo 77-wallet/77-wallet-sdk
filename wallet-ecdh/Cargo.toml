@@ -1,0 +1,25 @@
+[package]
+name = "wallet-ecdh"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+k256 = { version = "0.13", features = ["ecdh", "ecdsa-core", "alloc", "pem", "digest"] }
+rand_core = "0.6"
+hex = "0.4"
+# 加密相关依赖
+aes-gcm = {version = "0.10.3", features = ["aes"]}
+# HKDF 和哈希函数
+hkdf = "0.12"
+md5 = "0.7"
+uuid = "1.18.1"
+sha2 = "0.10.9"
+
+anyhow = {workspace = true}
+thiserror = {workspace = true}
+once_cell = { workspace = true }
+wallet-utils = { workspace = true }
+tracing = { workspace = true }
+
+
+[dev-dependencies]

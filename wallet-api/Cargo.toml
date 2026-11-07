@@ -1,0 +1,145 @@
+[package]
+name = "wallet-api"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+doctest = false
+
+[features]
+# default = ["prod", "api-mqtt"]
+default = ["dev", "token", "integration-tests", "api-mqtt", "api-wallet-console"]
+# default = [
+#     "test",
+#     "token",
+#     "integration-tests",
+#     "api-mqtt",
+#     "api-wallet-console",
+# ]
+
+integration-tests = []
+smoke-live = []
+api-mqtt = []
+
+response = []
+eth = []
+transaction = []
+token = []
+dev = ["wallet-transport-backend/dev"]
+test = ["wallet-transport-backend/test"]
+prod = ["wallet-transport-backend/prod"]
+accept_invalid_certs = ["wallet-transport-backend/accept_invalid_certs"]
+api-wallet-console = ["dep:eframe"]
+
+[[bin]]
+name = "api_wallet_console"
+path = "src/bin/api_wallet_console.rs"
+required-features = ["api-wallet-console"]
+
+[[bin]]
+name = "batch_transfer_ui"
+path = "src/bin/batch_transfer_ui.rs"
+required-features = ["api-wallet-console"]
+
+[build-dependencies]
+dotenv = "0.15"
+
+[dependencies]
+
+wallet-database = { workspace = true }
+wallet-utils = { workspace = true }
+wallet-crypto = { workspace = true }
+wallet-tree = { workspace = true }
+wallet-ecdh = { workspace = true }
+# wallet-error = { workspace = true }
+wallet-core = { workspace = true }
+wallet-transport = { workspace = true }
+wallet-transport-backend = { workspace = true }
+wallet-chain-interact = { workspace = true }
+wallet-chain-instance = { workspace = true }
+wallet-types = { workspace = true }
+tracing-appender = { workspace = true }
+chrono = { workspace = true }
+
+anyhow = { workspace = true }
+alloy = { workspace = true, features = ["k256"] }
+# solana-sdk = { workspace = true }
+
+rand = { workspace = true }
+argon2 = { version = "0.5", default-features = false, features = ["std"] }
+
+thiserror = { workspace = true }
+secp256k1 = { version = "0.28", features = ["rand", "recovery"] }
+
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+
+sqlx = { workspace = true }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+serde_repr = { workspace = true }
+
+once_cell = { workspace = true }
+lazy_static = { workspace = true }
+
+rumqttc = { workspace = true }
+
+ctr = { workspace = true }
+aes = { workspace = true }
+aes-gcm = { version = "0.10.3", features = ["aes"] }
+digest = { workspace = true }
+hex = { workspace = true }
+hmac = { workspace = true }
+hkdf = "0.12"
+pbkdf2 = { workspace = true }
+scrypt = { workspace = true }
+sha2 = { workspace = true }
+sha3 = { workspace = true }
+zeroize = "1"
+uuid = { workspace = true }
+
+
+futures = "0.3"
+regex = "1.10.4"
+crossbeam = "0.8.4"
+cfg-if = { workspace = true }
+
+# log
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+tracing-android = { workspace = true }
+
+# sysinfo = "0.30.12"
+tempfile = "3.19.0"
+
+async-trait = { workspace = true }
+
+# ping
+# surge-ping = { workspace = true }
+
+reqwest = { workspace = true }
+
+urlencoding = { workspace = true }
+url = { workspace = true }
+dashmap.workspace = true
+num_cpus = "1.16"
+scopeguard = "1.2"
+eframe = { version = "0.29", default-features = false, features = [
+    "default_fonts",
+    "glow",
+], optional = true }
+
+governor = "0.4"
+
+rust_decimal = { workspace = true }
+
+enum_dispatch = "0.3.1"
+
+rayon = { workspace = true }
+smallvec = "1.13.2"
+
+[dev-dependencies]
+alloy = { workspace = true, features = ["rlp"] }
+serial_test = "3.2.0"

@@ -1,0 +1,12 @@
+# Deprecated:
+# This file is no longer used at runtime.
+#
+# Active config files:
+# - coin.mainnet.toml
+# - coin.testnet.toml
+#
+# Runtime selects by build feature:
+# - `prod` -> coin.mainnet.toml
+# - `dev` / `test` -> coin.testnet.toml
+#
+# Do not edit token addresses in this file via comments.

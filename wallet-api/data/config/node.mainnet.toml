@@ -1,0 +1,94 @@
+[nodes]
+[nodes.tron]
+[[nodes.tron.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/tron"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.tron.nodes]]
+node_name = "TRON Official Node"
+rpc_url = "https://api.trongrid.io"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.eth.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/eth"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.sol.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/sol"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.btc.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/btc"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.ltc.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/ltc"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.doge.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/doge"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.sui.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://apprpc.77wapp.vip/sui"
+http_url = ""
+network = "mainnet"
+active = true
+
+# 77 Official Nodes fallback metadata; application loaders enforce rollout scope.
+
+[[nodes.polygon.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://polygon.drpc.org"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.avalanche.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://api.avax.network/ext/bc/C/rpc"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.arbitrum.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://arb1.arbitrum.io/rpc"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.base.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://mainnet.base.org"
+http_url = ""
+network = "mainnet"
+active = true
+
+[[nodes.scroll.nodes]]
+node_name = "77 Official Nodes"
+rpc_url = "https://rpc.scroll.io"
+http_url = ""
+network = "mainnet"
+active = true
